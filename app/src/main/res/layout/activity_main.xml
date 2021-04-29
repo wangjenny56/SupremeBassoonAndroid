@@ -17,7 +17,39 @@
             android:layout_height="wrap_content"
             android:textSize="30dp"
             android:gravity="center"
-            android:text="[Click the button to connect to http://10.0.2.2:3000/test]" />
+            android:text="Main Menu" />
+
+        <Button
+            android:id="@+id/viewDonationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Donation Feed"
+            android:gravity="center"
+            android:onClick="onDonationFeedClick"/>
+
+        <Button
+            android:id="@+id/viewReceivedDonationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Received Donations"
+            android:gravity="center"
+            android:onClick="onReceivedDonationClick"/>
+
+        <Button
+            android:id="@+id/viewMyDonationListingsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Donation Listings"
+            android:gravity="center"
+            android:onClick="onMyDonationClick"/>
+
+        <Button
+            android:id="@+id/createDonationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Donation"
+            android:gravity="center"
+            android:onClick="onCreateDonationClick"/>
 
         <Button
             android:layout_width="match_parent"
