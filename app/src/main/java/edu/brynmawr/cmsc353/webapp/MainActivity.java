@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         
     }
+
     public void onDonationFeedClick(View v) {
         // create an Intent using the current Activity
         // and the Class to be created
@@ -72,6 +73,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    public void onReceivedDonationClick (View v){
+        startActivity(new Intent(this, UnimplementedActivity.class));
+    }
+    public void onMyDonationClick (View v){
+        startActivity(new Intent(this, UnimplementedActivity.class));
+    }
+    public void onCreateDonationClick (View v){
+        startActivity(new Intent(this, UnimplementedActivity.class));
+    }
+
+
+
 
     public void onConnectButtonClick(View v) {
 
