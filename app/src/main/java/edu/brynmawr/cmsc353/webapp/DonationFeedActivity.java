@@ -41,9 +41,10 @@ public class DonationFeedActivity extends AppCompatActivity {
             String name = map.get("restaurant");
             String item = map.get("food_description");
             String quantity = "Quanity: " + map.get("quantity");
+            String cuisine = "Cuisine " + map.get("cuisine");
 
             TextView tv = new TextView(this); // Prepare textview object programmatically
-            tv.setText(name + " " + item + " " + quantity);
+            tv.setText(name + "\n" + item + "\n" + cuisine + "\n" + quantity);
             tv.setBackgroundResource(R.drawable.text_view_style);
             donationFeed.addView(tv);
         }
