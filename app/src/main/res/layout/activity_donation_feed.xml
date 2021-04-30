@@ -6,50 +6,55 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".DonationFeedActivity">
 
-<LinearLayout
-    android:id="@+id/donationLayout"
+<ScrollView
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/donationFeedField"
+    <LinearLayout
+        android:id="@+id/donationLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:gravity="center"
-        android:text="" />
-
-    <!-- A CardView that contains a TextView
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="20dp"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/info_text"
-            android:layout_width="wrap_content"
+            android:id="@+id/donationFeedField"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            />
+            android:textSize="30dp"
+            android:gravity="center"
+            android:text="" />
 
-    </androidx.cardview.widget.CardView> -->
+        <!-- A CardView that contains a TextView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="20dp"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+
+        </androidx.cardview.widget.CardView> -->
 
 
-</LinearLayout>
-
+    </LinearLayout>
+</ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
