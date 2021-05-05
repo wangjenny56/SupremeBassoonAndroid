@@ -36,6 +36,7 @@ public class AccessWebTask extends AsyncTask<URL, String, List<Map<String, Strin
             for(int i = 0; i < arrayResult.length(); i++){
                 JSONObject document = arrayResult.getJSONObject(i); //document object
                 JSONArray listingArray = document.getJSONArray("listings"); //listings array
+
                 System.out.println("WORKS" + document.getString("username"));
                 for(int j = 0; j < listingArray.length(); j++){
                     JSONObject foodItem = listingArray.getJSONObject(j); //one item in listings
