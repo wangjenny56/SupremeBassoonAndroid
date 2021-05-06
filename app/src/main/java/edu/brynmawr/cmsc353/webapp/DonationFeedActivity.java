@@ -98,6 +98,43 @@ public class DonationFeedActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                else if (s.length() == 0){
+                    System.out.println("EMPTY");
+                    donationFeed.removeAllViews();
+                    donationFeed.invalidate();
+
+                    try {
+                        String zipUrl = "http://10.0.2.2:3000/viewListingsForSocialService?zipcode=";
+                        URL url = new URL(zipUrl);
+                        AccessWebTask task = new AccessWebTask();
+                        task.execute(url);
+                        List<Map<String, String>> listings = task.get();
+                        System.out.println("The size is " + listings.size());
+                        for (Map<String, String> map : listings) {
+                            for (Map.Entry<String, String> entry : map.entrySet()) {
+                                String key = entry.getKey();
+                                String value = entry.getValue();
+                                System.out.println(key + " " + value);
+                            }
+                        }
+
+                        for (Map<String, String> map : listings) {
+                            String name = map.get("restaurant");
+                            String item = map.get("food_description");
+                            String quantity = "Quanity: " + map.get("quantity");
+                            String cuisine = "Cuisine " + map.get("cuisine");
+
+                            TextView tv = new TextView(DonationFeedActivity.this); // Prepare textview object programmatically
+                            tv.setText(name + "\n" + item + "\n" + cuisine + "\n" + quantity);
+                            tv.setBackgroundResource(R.drawable.text_view_style);
+                            donationFeed.addView(tv);
+                        }
+                    }
+                    catch (Exception e) {
+                        // uh oh
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }

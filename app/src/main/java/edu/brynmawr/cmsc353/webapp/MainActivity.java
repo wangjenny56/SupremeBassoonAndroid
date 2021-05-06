@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //URL url = new URL("http://10.0.2.2:3000/test");
-            URL url = new URL("http://10.0.2.2:3000/viewListingsForSocialService?zipcode=19010");
+            URL url = new URL("http://10.0.2.2:3000/viewListingsForSocialService?zipcode=");
             AccessWebTask task = new AccessWebTask();
             task.execute(url);
             List<Map<String, String>> listings = task.get();
