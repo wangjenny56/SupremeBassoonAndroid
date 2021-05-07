@@ -22,6 +22,10 @@ public class ViewDonationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_donation);
 
+        ActionBar actionBar = getSupportActionBar();
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         Bundle b = getIntent().getExtras();
         int id = -1;
         ArrayList<String> listings = new ArrayList<>();
@@ -33,7 +37,18 @@ public class ViewDonationActivity extends AppCompatActivity {
         textView.setText(listings.get(id));
     }
 
-    public void onBackClick (View v){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onBackPressed()
+    {
         try {
             //URL url = new URL("http://10.0.2.2:3000/test");
             URL url = new URL("http://10.0.2.2:3000/viewListingsForSocialService?zipcode=");
@@ -71,7 +86,7 @@ public class ViewDonationActivity extends AppCompatActivity {
 
         }
         catch (Exception e) {
-            // uh oh
+            startActivity(new Intent(this, MainActivity.class));
             e.printStackTrace();
         }
     }

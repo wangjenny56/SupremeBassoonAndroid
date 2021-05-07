@@ -219,16 +219,8 @@ public class DonationFeedActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void onBackClick (View v){
         startActivity(new Intent(this, MainActivity.class));
+        return super.onOptionsItemSelected(item);
     }
 
 }
