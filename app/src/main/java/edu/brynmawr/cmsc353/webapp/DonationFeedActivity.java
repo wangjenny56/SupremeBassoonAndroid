@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -31,6 +34,9 @@ public class DonationFeedActivity extends AppCompatActivity {
         // this Activity has a different layout
         setContentView(R.layout.activity_donation_feed);
 
+        ActionBar actionBar = getSupportActionBar();
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
@@ -211,4 +217,18 @@ public class DonationFeedActivity extends AppCompatActivity {
             }
         });
     }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void onBackClick (View v){
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
 }
