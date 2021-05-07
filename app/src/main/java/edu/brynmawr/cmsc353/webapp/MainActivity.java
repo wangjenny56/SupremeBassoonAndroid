@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, UnimplementedActivity.class));
     }
     public void onCreateDonationClick (View v){
-        startActivity(new Intent(this, UnimplementedActivity.class));
+        startActivity(new Intent(this, CreateDonationActivity.class));
     }
 
 

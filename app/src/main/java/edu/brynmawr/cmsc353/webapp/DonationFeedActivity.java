@@ -35,13 +35,19 @@ public class DonationFeedActivity extends AppCompatActivity {
         //TextView tv = new TextView(this); // Prepare textview object programmatically
 
         for (Map<String, String> map : listings) {
-            String name = map.get("restaurant");
+            String name = map.get("organization");
             String item = map.get("food_description");
             String quantity = "Quanity: " + map.get("quantity");
-            String cuisine = "Cuisine " + map.get("cuisine");
+            String foodType = "Food Type: " + map.get("food_type");
+            String text = name + "\n" + item + "\n" + quantity + "\n" + foodType;
+
+            if(map.containsKey("cuisine")){
+                String cuisine = "\n" + "Cuisine " + map.get("cuisine");
+                text = text + cuisine;
+            }
 
             TextView tv = new TextView(this); // Prepare textview object programmatically
-            tv.setText(name + "\n" + item + "\n" + cuisine + "\n" + quantity);
+            tv.setText(text);
             tv.setBackgroundResource(R.drawable.text_view_style);
             donationFeed.addView(tv);
         }
@@ -82,13 +88,19 @@ public class DonationFeedActivity extends AppCompatActivity {
                         }
 
                         for (Map<String, String> map : listings) {
-                            String name = map.get("restaurant");
+                            String name = map.get("organization");
                             String item = map.get("food_description");
                             String quantity = "Quanity: " + map.get("quantity");
-                            String cuisine = "Cuisine " + map.get("cuisine");
+                            String foodType = "Food Type: " + map.get("food_type");
+                            String text = name + "\n" + item + "\n" + quantity + "\n" + foodType;
+
+                            if(map.containsKey("cuisine")){
+                                String cuisine = "\n" + "Cuisine " + map.get("cuisine");
+                                text = text + cuisine;
+                            }
 
                             TextView tv = new TextView(DonationFeedActivity.this); // Prepare textview object programmatically
-                            tv.setText(name + "\n" + item + "\n" + cuisine + "\n" + quantity);
+                            tv.setText(text);
                             tv.setBackgroundResource(R.drawable.text_view_style);
                             donationFeed.addView(tv);
                         }
@@ -119,13 +131,19 @@ public class DonationFeedActivity extends AppCompatActivity {
                         }
 
                         for (Map<String, String> map : listings) {
-                            String name = map.get("restaurant");
+                            String name = map.get("organization");
                             String item = map.get("food_description");
                             String quantity = "Quanity: " + map.get("quantity");
-                            String cuisine = "Cuisine " + map.get("cuisine");
+                            String foodType = "Food Type: " + map.get("food_type");
+                            String text = name + "\n" + item + "\n" + quantity + "\n" + foodType;
+
+                            if(map.containsKey("cuisine")){
+                                String cuisine = "\n" + "Cuisine " + map.get("cuisine");
+                                text = text + cuisine;
+                            }
 
                             TextView tv = new TextView(DonationFeedActivity.this); // Prepare textview object programmatically
-                            tv.setText(name + "\n" + item + "\n" + cuisine + "\n" + quantity);
+                            tv.setText(text);
                             tv.setBackgroundResource(R.drawable.text_view_style);
                             donationFeed.addView(tv);
                         }

@@ -45,8 +45,16 @@ public class AccessWebTask extends AsyncTask<URL, String, List<Map<String, Strin
                         && foodItem.has("picked_up_by")){
 
                         HashMap<String,String> item = new HashMap<>();
-                        item.put("restaurant", document.getString("restaurant_name"));
-                        item.put("cuisine", document.getString("cuisine"));
+
+                        if(document.has("restaurant_name") && document.has("cuisine")){
+                            item.put("organization", document.getString("restaurant_name"));
+                            item.put("cuisine", document.getString("cuisine"));
+                        }
+                        else{
+                            item.put("organization", document.getString("social_service_name"));
+                        }
+                        //item.put("restaurant", document.getString("restaurant_name"));
+                        //item.put("cuisine", document.getString("cuisine"));
                         item.put("food_description", foodItem.getString("food_description"));
                         item.put("food_type", foodItem.getString("food_type"));
                         item.put("quantity", foodItem.getString("quantity"));
