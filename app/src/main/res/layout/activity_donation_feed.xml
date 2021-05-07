@@ -25,31 +25,16 @@ tools:context=".DonationFeedActivity">
                 android:hint="Search by Zipcode"/>
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
             <ListView
                 android:id="@+id/donationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clickable="false"
                 android:orientation="vertical"
-                android:clickable="false">
-
-
-                <!-- <TextView
-                    android:id="@+id/donationFeedField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="hoihoion"
-                    android:textSize="30dp" /> -->
+                android:scrollbarStyle="outsideOverlay">
 
             </ListView>
-        </ScrollView>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
