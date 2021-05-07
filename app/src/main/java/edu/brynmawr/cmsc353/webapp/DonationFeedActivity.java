@@ -7,15 +7,20 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -30,27 +35,46 @@ public class DonationFeedActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
         List<Map<String, String>> listings = (List<Map<String, String>>) args.getSerializable("list");
-
-        LinearLayout donationFeed = (LinearLayout) findViewById(R.id.donationLayout); // Root ViewGroup in which you want to add textviews
-        //TextView tv = new TextView(this); // Prepare textview object programmatically
+        ArrayList<String> allListingsArrayList = new ArrayList<>();
 
         for (Map<String, String> map : listings) {
             String name = map.get("organization");
             String item = map.get("food_description");
-            String quantity = "Quanity: " + map.get("quantity");
+            String quantity = "Quantity: " + map.get("quantity");
             String foodType = "Food Type: " + map.get("food_type");
             String text = name + "\n" + item + "\n" + quantity + "\n" + foodType;
 
-            if(map.containsKey("cuisine")){
+            if (map.containsKey("cuisine")) {
                 String cuisine = "\n" + "Cuisine " + map.get("cuisine");
                 text = text + cuisine;
             }
-
-            TextView tv = new TextView(this); // Prepare textview object programmatically
-            tv.setText(text);
-            tv.setBackgroundResource(R.drawable.text_view_style);
-            donationFeed.addView(tv);
+            allListingsArrayList.add(text);
         }
+
+        ListView donationFeed = (ListView) findViewById(R.id.donationLayout); // Root ViewGroup in which you want to add textviews
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, allListingsArrayList);
+        donationFeed.setAdapter(adapter);
+
+        //TextView tv = new TextView(this); // Prepare textview object programmatically
+        //tv.setText(text);
+        //tv.setBackgroundResource(R.drawable.text_view_style);
+        //donationFeed.addView(tv);
+
+        donationFeed.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int donationId = (int) id;
+                Intent intent = new Intent(DonationFeedActivity.this, ViewDonationActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("id", donationId);
+                b.putStringArrayList("listings", allListingsArrayList);
+                intent.putExtras(b);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
 
         EditText userZipcode = findViewById(R.id.userZipcode);
 
@@ -69,8 +93,7 @@ public class DonationFeedActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if(s.length() == 5){
                     System.out.println(s.toString());
-                    donationFeed.removeAllViews();
-                    donationFeed.invalidate();
+                    allListingsArrayList.clear();
 
                     try {
                         String zipUrl = "http://10.0.2.2:3000/viewListingsForSocialService?zipcode=" + s.toString();
@@ -90,20 +113,36 @@ public class DonationFeedActivity extends AppCompatActivity {
                         for (Map<String, String> map : listings) {
                             String name = map.get("organization");
                             String item = map.get("food_description");
-                            String quantity = "Quanity: " + map.get("quantity");
+                            String quantity = "Quantity: " + map.get("quantity");
                             String foodType = "Food Type: " + map.get("food_type");
                             String text = name + "\n" + item + "\n" + quantity + "\n" + foodType;
 
-                            if(map.containsKey("cuisine")){
+                            if (map.containsKey("cuisine")) {
                                 String cuisine = "\n" + "Cuisine " + map.get("cuisine");
                                 text = text + cuisine;
                             }
-
-                            TextView tv = new TextView(DonationFeedActivity.this); // Prepare textview object programmatically
-                            tv.setText(text);
-                            tv.setBackgroundResource(R.drawable.text_view_style);
-                            donationFeed.addView(tv);
+                            allListingsArrayList.add(text);
                         }
+
+                        adapter.notifyDataSetChanged();
+
+                        //for (Map<String, String> map : listings) {
+                        //    String name = map.get("organization");
+                        //    String item = map.get("food_description");
+                        //    String quantity = "Quanity: " + map.get("quantity");
+                        //    String foodType = "Food Type: " + map.get("food_type");
+                        //    String text = name + "\n" + item + "\n" + quantity + "\n" + foodType;
+
+                        //    if(map.containsKey("cuisine")){
+                        //        String cuisine = "\n" + "Cuisine " + map.get("cuisine");
+                        //        text = text + cuisine;
+                        //    }
+
+                        //    TextView tv = new TextView(DonationFeedActivity.this); // Prepare textview object programmatically
+                        //    tv.setText(text);
+                        //    tv.setBackgroundResource(R.drawable.text_view_style);
+                        //    donationFeed.addView(tv);
+                        //}
                     }
                     catch (Exception e) {
                         // uh oh
@@ -112,8 +151,7 @@ public class DonationFeedActivity extends AppCompatActivity {
                 }
                 else if (s.length() == 0){
                     System.out.println("EMPTY");
-                    donationFeed.removeAllViews();
-                    donationFeed.invalidate();
+                    allListingsArrayList.clear();
 
                     try {
                         String zipUrl = "http://10.0.2.2:3000/viewListingsForSocialService?zipcode=";
@@ -130,23 +168,40 @@ public class DonationFeedActivity extends AppCompatActivity {
                             }
                         }
 
+
                         for (Map<String, String> map : listings) {
                             String name = map.get("organization");
                             String item = map.get("food_description");
-                            String quantity = "Quanity: " + map.get("quantity");
+                            String quantity = "Quantity: " + map.get("quantity");
                             String foodType = "Food Type: " + map.get("food_type");
                             String text = name + "\n" + item + "\n" + quantity + "\n" + foodType;
 
-                            if(map.containsKey("cuisine")){
+                            if (map.containsKey("cuisine")) {
                                 String cuisine = "\n" + "Cuisine " + map.get("cuisine");
                                 text = text + cuisine;
                             }
-
-                            TextView tv = new TextView(DonationFeedActivity.this); // Prepare textview object programmatically
-                            tv.setText(text);
-                            tv.setBackgroundResource(R.drawable.text_view_style);
-                            donationFeed.addView(tv);
+                            allListingsArrayList.add(text);
                         }
+
+                        adapter.notifyDataSetChanged();
+
+                        //for (Map<String, String> map : listings) {
+                        //    String name = map.get("organization");
+                        //    String item = map.get("food_description");
+                        //    String quantity = "Quanity: " + map.get("quantity");
+                        //    String foodType = "Food Type: " + map.get("food_type");
+                        //    String text = name + "\n" + item + "\n" + quantity + "\n" + foodType;
+
+                        //    if(map.containsKey("cuisine")){
+                        //        String cuisine = "\n" + "Cuisine " + map.get("cuisine");
+                        //        text = text + cuisine;
+                        //    }
+
+                        //    TextView tv = new TextView(DonationFeedActivity.this); // Prepare textview object programmatically
+                        //    tv.setText(text);
+                        //    tv.setBackgroundResource(R.drawable.text_view_style);
+                        //    donationFeed.addView(tv);
+                        //}
                     }
                     catch (Exception e) {
                         // uh oh
