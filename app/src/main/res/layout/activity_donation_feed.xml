@@ -28,17 +28,19 @@ tools:context=".DonationFeedActivity">
         <ScrollView
             android:id="@+id/scrollView1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+
+            <ListView
                 android:id="@+id/donationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clickable="false">
 
 
-               <!-- <TextView
+                <!-- <TextView
                     android:id="@+id/donationFeedField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,8 +48,8 @@ tools:context=".DonationFeedActivity">
                     android:text="hoihoion"
                     android:textSize="30dp" /> -->
 
-            </LinearLayout>
+            </ListView>
         </ScrollView>
-</LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
