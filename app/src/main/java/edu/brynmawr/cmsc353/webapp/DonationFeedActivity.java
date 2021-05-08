@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -38,6 +39,21 @@ public class DonationFeedActivity extends AppCompatActivity {
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
+        Spinner cuisineDropdown = findViewById(R.id.spinner1);
+        //create a list of items for the spinner.
+        String[] cuisineItems = new String[]{"No Cuisine Filter", "1", "2", "3"};
+        ArrayAdapter<String> cuisineAdapterSpinner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, cuisineItems);
+        cuisineDropdown.setAdapter(cuisineAdapterSpinner);
+        cuisineDropdown.setPrompt("Cuisine");
+
+        Spinner perishabilityDropdown = findViewById(R.id.spinner2);
+        //create a list of items for the spinner.
+        String[] perishItems = new String[]{"No Time Filter","1", "2", "3"};
+        ArrayAdapter<String> perishAdapterSpinner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, perishItems);
+        perishabilityDropdown.setAdapter(perishAdapterSpinner);
+        perishabilityDropdown.setPrompt("Perishability");
+
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
         List<Map<String, String>> listings = (List<Map<String, String>>) args.getSerializable("list");
@@ -60,11 +76,6 @@ public class DonationFeedActivity extends AppCompatActivity {
         ListView donationFeed = (ListView) findViewById(R.id.donationLayout); // Root ViewGroup in which you want to add textviews
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, allListingsArrayList);
         donationFeed.setAdapter(adapter);
-
-        //TextView tv = new TextView(this); // Prepare textview object programmatically
-        //tv.setText(text);
-        //tv.setBackgroundResource(R.drawable.text_view_style);
-        //donationFeed.addView(tv);
 
         donationFeed.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
