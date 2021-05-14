@@ -26,17 +26,17 @@
             android:layout_height="wrap_content"
             android:hint="Enter Your Social Service"/>
 
-        <EditText
+        <!--<EditText
             android:id="@+id/foodName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Name of Food"/>
+            android:hint="Enter Name of Food"/> -->
 
         <EditText
             android:id="@+id/foodDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Food Description "/>
+            android:hint="Enter Food Description Name"/>
 
         <EditText
             android:id="@+id/foodType"
@@ -48,6 +48,7 @@
             android:id="@+id/quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="Enter Quantity"/>
 
         <EditText
@@ -67,7 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Submit" />
+            android:text="Submit"
+            android:onClick="onSubmit"/>
 
         <!--
         Restaurant Name:

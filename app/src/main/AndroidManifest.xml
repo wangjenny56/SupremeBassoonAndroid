@@ -22,6 +22,7 @@
         <activity android:name=".UnimplementedActivity" />
         <activity android:name=".CreateDonationActivity" />
         <activity android:name=".ViewDonationActivity" />
+        <activity android:name=".NewDonationMadeActivity" />
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
