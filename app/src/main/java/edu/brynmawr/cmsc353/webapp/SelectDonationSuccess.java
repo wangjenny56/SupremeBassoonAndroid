@@ -1,49 +1,32 @@
 package edu.brynmawr.cmsc353.webapp;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ViewDonationActivity extends AppCompatActivity {
+public class SelectDonationSuccess extends AppCompatActivity {
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_donation);
-
         ActionBar actionBar = getSupportActionBar();
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Bundle b = getIntent().getExtras();
-        int id = -1;
-        ArrayList<String> listings = new ArrayList<>();
-        if(b != null) {
-            id = b.getInt("id");
-            listings = b.getStringArrayList("listings");
-        }
-        TextView textViewRestaurant = (TextView) findViewById(R.id.donationListingRestaurant);
-        TextView textViewDescription = (TextView) findViewById(R.id.donationListingDescription);
-        String text = listings.get(id);
-        String restaurantName = text.substring(0, text.indexOf("\n"));
-        String listingDetails = text.substring(text.indexOf("\n"));
-        textViewRestaurant.setText(restaurantName);
-        textViewDescription.setText(listingDetails);
+        setContentView(R.layout.activity_select_donation_success);
     }
 
-    public void onSelectButtonPressed(View view) {
-        startActivity(new Intent(this, SelectDonationSuccess.class));
+    public void onBackButtonPressed(View view) {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override

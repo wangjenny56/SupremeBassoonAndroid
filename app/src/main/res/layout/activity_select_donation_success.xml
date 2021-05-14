@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewDonationActivity">
+    tools:context=".SelectDonationSuccess">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,27 +12,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/donationListingRestaurant"
+            android:id="@+id/successMethod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="donation listing restaurant"
+            android:text="Donation Listing Successfully Selected!"
             android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/donationListingDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="donation listing description"
-            android:textSize="20dp" />
 
         <Button
-            android:id="@+id/selectButton"
+            android:id="@+id/mainMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select"
-            android:onClick="onSelectButtonPressed"/>
+            android:text="Back to Main Menu"
+            android:onClick="onBackButtonPressed"/>
 
 
     </LinearLayout>
