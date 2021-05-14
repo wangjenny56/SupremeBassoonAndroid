@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.net.URL;
 import java.util.List;
@@ -35,12 +36,31 @@ public class CreateDonationActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private boolean validate(EditText[] fields){
+        for(int i = 0; i < fields.length; i++){
+            EditText currentField = fields[i];
+            if(currentField.getText().toString().length() <= 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void onSubmit(View v) {
+        boolean checkInputs = validate(new EditText[] {(EditText)findViewById(R.id.socialServiceName),
+                (EditText)findViewById(R.id.foodDescription), (EditText)findViewById(R.id.foodType) ,
+                (EditText)findViewById(R.id.quantity), (EditText)findViewById(R.id.perishability),
+                (EditText)findViewById(R.id.pickUpTime) });
+
+        if(!checkInputs){
+            Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         try {
+
             EditText socialService  = (EditText)findViewById(R.id.socialServiceName);
             String socialServiceString = "\"" + socialService.getText() + "\",";
-            /*EditText foodName  = (EditText)findViewById(R.id.foodName);
-            String foodNameString = "\"" + foodName.getText()+ "\",";*/
             EditText foodDescription  = (EditText)findViewById(R.id.foodDescription);
             String foodDescriptionString = "\"" + foodDescription.getText()+ "\",";
             EditText foodType  = (EditText)findViewById(R.id.foodType);
