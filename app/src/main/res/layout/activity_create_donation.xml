@@ -62,6 +62,7 @@
             android:id="@+id/pickUpTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="time"
             android:hint="Enter Pick Up Time"/>
 
         <Button
