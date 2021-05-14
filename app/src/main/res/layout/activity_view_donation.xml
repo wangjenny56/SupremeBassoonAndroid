@@ -12,12 +12,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/donationId"
+            android:id="@+id/donationListingRestaurant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="donation listing description"
+            android:text="donation listing restaurant"
             android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/donationListingDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="donation listing description"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/selectButton"

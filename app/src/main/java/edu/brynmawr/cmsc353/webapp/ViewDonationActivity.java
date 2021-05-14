@@ -33,8 +33,13 @@ public class ViewDonationActivity extends AppCompatActivity {
             id = b.getInt("id");
             listings = b.getStringArrayList("listings");
         }
-        TextView textView = (TextView) findViewById(R.id.donationId);
-        textView.setText(listings.get(id));
+        TextView textViewRestaurant = (TextView) findViewById(R.id.donationListingRestaurant);
+        TextView textViewDescription = (TextView) findViewById(R.id.donationListingDescription);
+        String text = listings.get(id);
+        String restaurantName = text.substring(0, text.indexOf("\n"));
+        String listingDetails = text.substring(text.indexOf("\n"));
+        textViewRestaurant.setText(restaurantName);
+        textViewDescription.setText(listingDetails);
     }
 
     @Override
@@ -69,20 +74,6 @@ public class ViewDonationActivity extends AppCompatActivity {
             args.putSerializable("list",(Serializable)listings);
             intent.putExtra("BUNDLE",args);
             startActivity(intent);
-
-            // you can pass arguments to the new Activity
-            // using key/value pairs in the Intent
-
-            //i.putExtra("food_description", item);
-            //i.putExtra("food_list", (Parcelable) listings);
-
-            // pass the Intent to the Activity,
-            // using the specified request code
-            //startActivityForResult(i, DONATION_FEED_ACTIVITY_ID);  //handle this with that request code function stuff
-
-            /*ArrayList<String> list = new ArrayList<String>();
-            i.putExtra("arraylist", list);
-            startActivity(i);*/
 
         }
         catch (Exception e) {
