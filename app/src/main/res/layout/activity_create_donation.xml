@@ -55,7 +55,8 @@
             android:id="@+id/perishability"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Perishability"/>
+            android:inputType="number"
+            android:hint="Enter Perishability in Hours"/>
 
         <EditText
             android:id="@+id/pickUpTime"
